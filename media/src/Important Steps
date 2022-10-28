@@ -1,0 +1,17 @@
+docker run -d --name=postapi2 --network=team3 -p 8088:3000 --env=DATABASE_HOST=postgres 
+--env=DATABASE_PORT="5432" --env=DATABASE_NAME=postgres --env=DATABASE_USERNAME=postgres --env=DATABASE_PASSWORD=foo postapi2
+
+docker run -d --name=mediaapi --network=team3 -p 8082:3000 --env=DATABASE_HOST=postgres --env=DATABASE_PORT="5432" 
+--env=DATABASE_NAME=postgres --env=DATABASE_USERNAME=postgres --env=DATABASE_PASSWORD=foo mediaapi
+
+docker run -d --name=charityapi --network=team3 -p 8083:3000 --env=DATABASE_HOST=postgres --env=DATABASE_PORT="5432" 
+--env=DATABASE_NAME=postgres --env=DATABASE_USERNAME=postgres --env=DATABASE_PASSWORD=foo charityapi
+
+sudo apt-get install iputils-ping
+
+docker tag postgres eu.gcr.io/cloud-ready-roke-team-3/kevin/userimage:latest
+docker tag charityapi eu.gcr.io/cloud-ready-roke-team-3/kevin/userimage:latest
+docker tag charityapi eu.gcr.io/cloud-ready-roke-team-3/kevin/userimage:latest
+
+docker push eu.gcr.io/cloud-ready-roke-team-3/kevin/userimage:latest
+
